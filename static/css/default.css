@@ -1,0 +1,32 @@
+img {
+    pointer-events: none;
+}
+.bg-lightgray {
+    background: rgb(243, 244, 247);
+}
+.theme.bg-dark {
+    background: rgb(22, 22, 22) !important;
+}
+.theme.bg-light {
+    background: rgb(222, 222, 222) !important;
+}
+.theme.text-dark {
+    color: rgb(22, 22, 22) !important;
+}
+.theme.text-light {
+    color: rgb(222, 222, 222) !important;
+}
+.theme.btn-dark {
+    background: rgb(22, 22, 22) !important;
+    border: none;
+}
+.theme.btn-dark:hover {
+    background: rgb(32, 32, 32) !important;
+}
+.theme.btn-secondary {
+    background: rgb(62, 62, 62) !important;
+    border: none;
+}
+.theme.btn-secondary:hover {
+    background: rgb(72, 72, 72) !important;
+}
