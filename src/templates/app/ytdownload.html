@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToolMinal</title>
+        <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/css/fontawesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/brands.css" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/solid.css" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/default.css">
+        <style>
+            .bg-theme {
+                background: linear-gradient(110deg, 
+                    rgba(0, 117, 193) 0%,
+
+                    rgba(0, 111, 183) 40.0%,
+                    rgba(0, 76, 125) 40.2%,
+                    rgba(0, 70, 116) 40.4%,
+                    rgba(0, 105, 174) 40.6%,
+                    
+                    rgba(0, 99, 164) 45.6%,
+                    rgba(0, 64, 106) 45.9%,
+                    rgba(0, 59, 97) 46.2%,
+                    rgba(0, 94, 154) 46.5%,
+                    
+                    rgba(0, 88, 145) 51.5%,
+                    rgba(0, 53, 87) 51.9%,
+                    rgba(0, 47, 77) 52.3%,
+                    rgba(0, 82, 135) 52.7%,
+
+                    rgba(0, 76, 125) 57.7%,
+                    rgba(0, 41, 68) 58.2%,
+                    rgba(0, 35, 58) 58.7%,
+                    rgba(0, 70, 116) 59.2%,
+
+                    rgba(0, 64, 106) 64.2%,
+                    rgba(0, 29, 48) 64.8%,
+                    rgba(0, 23, 39) 65.4%,
+                    rgba(0, 59, 97) 66.0%,
+
+                    rgba(0, 53, 87) 71.0%,
+                    rgba(0, 18, 29) 71.7%,
+                    rgba(0, 12, 19) 72.4%,
+                    rgba(0, 47, 77) 73.1%,
+
+                    rgba(0, 41, 68) 78.1%,
+                    rgba(0, 6, 10) 78.9%,
+                    rgba(0, 0, 0) 79.7%,
+                    rgba(0, 35, 58) 80.5%,
+
+                    rgba(0, 41, 68) 85.5%,
+                    rgba(0, 6, 10) 86.4%,
+                    rgba(0, 0, 0) 87.3%,
+                    rgba(0, 29, 48) 88.2%,
+                    
+                    rgba(0, 0, 0) 100%
+                );
+            }
+            .btn-back {
+                transition: all .5s;
+                i {
+                    color: rgb(81, 85, 110);
+                    transition: all .5s;
+                }
+                background: rgb(248, 248, 248);
+                border: none;
+            }
+            .btn-back:hover {
+                i {
+                    color: rgb(22, 22, 22) !important;
+                }
+                background: rgb(232, 232, 232) !important;
+            }
+            .btn-download {
+                background: rgb(232, 232, 232);
+            }
+            .btn-download:hover {
+                background: rgb(255, 232, 232);
+            }
+            .overflow-auto::-webkit-scrollbar {
+                display: none;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body class="position-relative bg-light">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-theme">
+            <div class="container">
+                <a class="navbar-brand d-flex" href="/">
+                    <img src="/static/img/favicon.ico" width="30" height="30" class="d-inline-block my-auto">
+                    <span class="my-auto ms-2 h3 font-monospace">ToolMinal</span>
+                </a>
+                <a href="https://github.com/SJ-Chuang/ToolMinal" target="_blank" class="btn navbar-brand d-none d-md-block" style="font-size: 1.5rem;" data-bs-toggle="tooltip" title="Go to ToolMinal Github">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </nav>
+        <div class="position-absolute" style="margin-left: 32px;">
+            <button class="btn-back rounded-circle" style="height: 40px; width: 40px;" onclick="window.location.href = '/'">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </div>
+        <div class="d-flex justify-content-center" style="margin-top: 96px;">
+            <div class="my-auto w-50 user-select-none">
+                <span class="fw-bold me-1" style="font-size: 3em;">Enter the</span>
+                <span class="fw-bold" style="font-size: 3em;">You</span>
+                <span class="fw-bold bg-danger text-light px-2 py-1" style="font-size: 3em; border-radius: 7% 7% 7% 7% / 20% 20% 20% 20%;">Tube</span>
+                <span class="fw-bold ms-1" style="font-size: 3em;">URL</span>
+                <div class="input-group mt-3">
+                    <input type="text" id="inputURL" class="form-control bg-lightgray fs-3">
+                    <button class="btn btn-secondary fs-3 px-4" id="searchBtn" type="button" onclick="search();">
+                        <i class="icon-search fa-solid fa-magnifying-glass"></i>
+                        <div class="icon-loading spinner-grow d-none" role="status"></div>
+                    </button>
+                </div>
+                <span class="text-danger d-block" id="warningInfo" style="font-size: 1em;"></span>
+                <div class="row mt-3" id="urlInfo">
+                    <div class="col-4 d-flex">
+                        <img class="img-fluid w-100 my-auto rounded d-none" id="thumbnail" src="https://i.ytimg.com/vi/5dkoQyFExE4">
+                    </div>
+                    <div class="col-8">
+                        <span class="fw-bold d-block overflow-auto d-none" id="urlTitle" style="height: 25%; overflow: auto;">Title</span>
+                        <span class="text-secondary d-block d-none" id="urlDuration" style="height: 25%;">Duration : 00:00:00</span>
+                        <div class="d-grid gap-2">
+                            <a class="btn-download btn d-flex justify-content-between px-5 d-none" id="videoBtn" type="button" href="" target="_blank">
+                                <span class="text-dark theme fw-bold fs-5">Video</span>
+                                <span class="text-resolution text-dark my-auto">1080p</span>
+                                <span class="text-filesize text-dark my-auto">18mb</span>
+                                <span class="text-format text-dark my-auto">MP4</span>
+                                <span class="text-dark my-auto fs-5"><i class="fa-solid fa-download"></i></span>
+                            </a>
+                            <a class="btn-download btn d-flex justify-content-between px-5 d-none" id="audioBtn" type="button" href="" target="_blank">
+                                <span class="text-dark theme fw-bold fs-5">Audio</span>
+                                <span class="text-bandwidth text-dark my-auto">128kbps</span>
+                                <span class="text-filesize text-dark my-auto">18mb</span>
+                                <span class="text-format text-dark my-auto">MP3</span>
+                                <span class="text-dark my-auto fs-5"><i class="fa-solid fa-download"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/bootstrap.bundle.js"></script>
+    <script src="/static/js/default.js"></script>
+    <script>
+        function Get(url, func=null) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    func(xhr.responseText);
+                };
+            }
+            xhr.send(null);
+        }
+        function search() {
+            let btn = document.getElementById("searchBtn")
+            if (document.getElementById("inputURL").value != "") {
+                btn.classList.add("disabled");
+                btn.querySelector(".icon-search").classList.toggle("d-none");
+                btn.querySelector(".icon-loading").classList.toggle("d-none");
+                Get(`api/get/streams?url=${document.getElementById("inputURL").value}`, function(resp) {
+                    btn.classList.remove("disabled");
+                    btn.querySelector(".icon-search").classList.toggle("d-none");
+                    btn.querySelector(".icon-loading").classList.toggle("d-none");
+                    resp = JSON.parse(resp);
+                    if (resp.status == "ok") {
+                        let thumbnail = document.getElementById("thumbnail");
+                        let title = document.getElementById("urlTitle");
+                        let duration = document.getElementById("urlDuration")
+                        let video = document.getElementById("videoBtn");
+                        let audio = document.getElementById("audioBtn");
+                        thumbnail.src = resp.results.thumbnail_url;
+                        thumbnail.classList.remove("d-none");
+                        title.innerHTML = resp.results.title;
+                        title.classList.remove("d-none");
+                        duration.innerHTML = "Duration " + resp.results.length;
+                        duration.classList.remove("d-none");
+                        video.href = resp.results.streams.Video[0];
+                        video.querySelector(".text-resolution").innerHTML = resp.results.streams.Video[1];
+                        video.querySelector(".text-filesize").innerHTML = resp.results.streams.Video[2];
+                        video.querySelector(".text-format").innerHTML = resp.results.streams.Video[3];
+                        video.setAttribute("download", "video.mp4");
+                        video.classList.remove("d-none");
+                        audio.href = resp.results.streams.Audio[0];
+                        audio.querySelector(".text-bandwidth").innerHTML = resp.results.streams.Audio[1];
+                        audio.querySelector(".text-filesize").innerHTML = resp.results.streams.Audio[2];
+                        audio.querySelector(".text-format").innerHTML = resp.results.streams.Audio[3];
+                        audio.classList.remove("d-none");
+                        document.getElementById("warningInfo").classList.add("d-none");
+                        document.getElementById("urlInfo").classList.remove("d-none");
+                    } else {
+                        document.getElementById("warningInfo").innerHTML = resp.message;
+                        document.getElementById("urlInfo").classList.add("d-none");
+                        document.getElementById("warningInfo").classList.remove("d-none");
+                    }
+                });
+            }
+        }
+    </script>
+</html>
