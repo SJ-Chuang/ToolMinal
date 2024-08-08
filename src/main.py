@@ -7,12 +7,14 @@ import apps
 import sys
 import os
 
-os.makedirs(f"{settings.BASE_DIR}/logs", exist_ok=True)
+LOG_DIR = f"{settings.BASE_DIR}/../../logs"
+
+os.makedirs(LOG_DIR, exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
-    filename=datetime.today().strftime(f"{settings.BASE_DIR}/logs/%Y%m%d.log"),
+    filename=datetime.today().strftime(f"{LOG_DIR}/%Y%m%d.log"),
     filemode="a"
 )
 
