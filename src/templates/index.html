@@ -96,10 +96,14 @@
                 position: absolute;
                 list-style-type: none;
                 padding: 0;
-                top: 50px;
+                top: 48px;
                 display: none;
             }
+            .dropdown-item {
+                background: rgb(22, 22, 22);
+            }
             .dropdown-item.disabled {
+                background: rgb(22, 22, 22);
                 color: gray;
             }
             .dropdown-item:hover {
@@ -122,35 +126,35 @@
             .title-dev {
                 font-size: min(3vw, 30px);
             }
-            @media (min-width: 768px) {
+            @media (min-width: 992px) {
                 .nav-name {
                     font-size: 1.5rem;
                     font-weight: normal;
                 }
-                .dropdown:hover .dropdown-list {
+                .dropdown:not(.is-mobile):hover .dropdown-list {
                     display: block;
                 }
             }
         </style>
     </head>
     <body class="user-select-none">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container-lg">
                 <a class="navbar-brand d-flex" href="">
-                    <img src="/static/img/favicon.ico" width="30" height="30" class="d-inline-block my-auto">
-                    <span class="my-auto ms-2 h3 font-monospace">ToolMinal</span>
+                    <img src="/static/img/favicon.ico" class="d-inline-block my-auto img-fluid sizer ms-2" mobile-width="5rem" style="width: 40px;">
+                    <span class="my-auto ms-2 font-monospace sizer" mobile-fs="5rem" style="font-size: 2rem;">ToolMinal</span>
                 </a>
-                <button class="navbar-toggler position-absolute" style="right: 1rem;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false">
+                <button class="navbar-toggler position-absolute border-0 sizer" id="navToggler" mobile-fs="3rem" style="right: 1rem; box-shadow: none; outline: none;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <div class="btn-group dropdown">
-                                <button class="nav-link nav-name" onclick="focuson('apps')">
-                                    Apps<i class="fa-solid fa-chevron-down fa-2xs ms-2 d-none d-md-inline-block"></i>
+                                <button class="nav-link nav-name sizer ms-3" mobile-fs="4rem" onclick="focuson('apps')">
+                                    Apps<i class="fa-solid fa-chevron-down fa-2xs ms-2 d-none d-lg-inline-block"></i>
                                 </button>
-                                <ul class="dropdown-list rounded-0 border-0 bg-dark text-light">
+                                <ul class="dropdown-list rounded-0 border-0 text-light pt-3">
                                     <li><a class="dropdown-item px-4 py-2" href="/app/ytdownload"><i class="fa-solid fa-image me-2"></i>Video Downloader</a></li>
                                     <li><a class="dropdown-item px-4 py-2 disabled"><i class="fa-solid fa-image me-2"></i>Image Converter</a></li>
                                 </ul>
@@ -158,44 +162,44 @@
                         </li>
                     </ul>
                 </div>
-                <a href="https://github.com/SJ-Chuang/ToolMinal" target="_blank" class="btn navbar-brand d-none d-md-block" style="font-size: 1.5rem;" data-bs-toggle="tooltip" title="Go to ToolMinal Github">
+                <a href="https://github.com/SJ-Chuang/ToolMinal" target="_blank" class="btn navbar-brand d-none d-lg-block" style="font-size: 1.5rem;" data-bs-toggle="tooltip" title="Go to ToolMinal Github">
                     <i class="fa-brands fa-github"></i>
                     <span class="text-secondary ms-2 fs-5 lead">{{ version }}</span>
                 </a>
             </div>
         </nav>
         <div class="w-100 bg-black position-fixed" style="height: 480px; z-index: 0;"></div>
-        <div class="w-100 bg-theme position-fixed" style="height: 480px; z-index: 0;" id="themeBG">
-            <div class="container d-flex" style="margin-top: 128px;">
+        <div class="w-100 bg-theme position-fixed ps-3" style="height: 480px; z-index: 0;" id="themeBG">
+            <div class="container-lg d-flex sizer" mobile-mt="200px" style="margin-top: 128px;">
                 <img src="/static/img/favicon-light.png" width="56" height="56" class="d-inline-block my-auto me-3">
                 <span class="text-light font-monospace fw-bold" style="font-size: 64px;">ToolMinal</span>
             </div>
-            <div class="container d-flex">
+            <div class="container-lg d-flex">
                 <span class="text-light fw-light" style="font-size: 56px;">GET STARTED</span>
             </div>
         </div>
         <div class="w-100 position-relative" style="height: 480px;"></div>
         <div class="w-100 bg-lightgray position-relative" style="height: 2048px;; z-index: 1;">
-            <div class="container">
-                <div class="row py-5">
-                    <div class="col-12" id="apps">
-                        <span class="display-5" style="font-family: Arial, Helvetica, sans-serif;">APPS</span>
+            <div class="container-lg">
+                <div class="row py-5" id="apps">
+                    <div class="col-12">
+                        <span class="display-5 sizer" mobile-fs="5rem" style="font-family: Arial, Helvetica, sans-serif;">APPS</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-md-4 p-3" id="videoDownloader">
+                    <div class="col-12 col-lg-4 p-3" id="videoDownloader">
                         <a class="card card-shadow rounded-0 border-0 text-decoration-none" href="/app/ytdownload">
                             <div class="card-body">
-                                <h5 class="card-title lead fw-bold text-uppercase">Video Downloader</h5>
-                                <p class="card-text lead" style="font-size: 16px; height: 5rem; overflow: auto;">Download videos (.mp4) or audio files (.mp3) from YouTube using the provided URL.</p>
+                                <h5 class="card-title lead fw-bold text-uppercase sizer" mobile-fs="3rem">Video Downloader</h5>
+                                <p class="card-text lead sizer" mobile-fs="2rem" mobile-height="8rem" style="font-size: 16px; height: 5rem; overflow: auto;">Download videos (.mp4) or audio files (.mp3) from YouTube using the provided URL.</p>
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-md-4 p-3" id="imageConverter">
+                    <div class="col-12 col-lg-4 p-3" id="imageConverter">
                         <a class="card card-shadow rounded-0 border-0 text-decoration-none disabled">
                             <div class="card-body">
-                                <h5 class="card-title lead fw-bold text-uppercase">Image Converter</h5>
-                                <p class="card-text lead" style="font-size: 16px; height: 5rem; overflow: auto;">Image converter supports conversion between multiple formats, including PNG, JPG, GIF, TIFF and BMP.</p>
+                                <h5 class="card-title lead fw-bold text-uppercase sizer" mobile-fs="3rem">Image Converter</h5>
+                                <p class="card-text lead sizer" mobile-fs="2rem" mobile-height="8rem" style="font-size: 16px; height: 5rem; overflow: auto;">Image converter supports conversion between multiple formats, including PNG, JPG, GIF, TIFF and BMP.</p>
                             </div>
                         </a>
                     </div>
@@ -209,18 +213,34 @@
     <script src="/static/js/default.js"></script>
     <script>
         function focuson(item_id) {
+            document.getElementById("navToggler").click();
             let item = document.getElementById(item_id);
             let shift = item.getBoundingClientRect().top - document.body.getBoundingClientRect().top;
-            let nav_height = document.querySelector(".navbar").getBoundingClientRect().height;
             window.scrollTo({
                 behavior: "smooth",
                 top: shift - nav_height
             });
         }
+        document.getElementById("navToggler").addEventListener("click", function(e) {
+            if (this.classList.contains("isOpened")) {
+                document.querySelector(".navbar").classList.remove("bg-black");
+            } else {
+                document.querySelector(".navbar").classList.add("bg-black");
+            }
+            this.classList.toggle("isOpened");
+        })
+        var nav_height = document.querySelector(".navbar").clientHeight;
+        window.addEventListener("resize", function(e) {
+            let toggler = document.getElementById("navToggler")
+            if (toggler.classList.contains("isOpened")) {
+                toggler.click();
+            }
+        })
         window.addEventListener("scroll", function(e) {
             let alpha = Math.max(Math.min(window.scrollY / 256, 1), 0.1);
             document.querySelector(".navbar").style.background = `rgba(22, 22, 22, ${alpha})`;
             document.getElementById("themeBG").style.top = -window.scrollY / 3 + "px"
         });
+        
     </script>
 </html>

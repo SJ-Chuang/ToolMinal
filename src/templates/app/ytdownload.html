@@ -56,21 +56,6 @@
                     rgba(0, 0, 0) 100%
                 );
             }
-            .btn-back {
-                transition: all .5s;
-                i {
-                    color: rgb(81, 85, 110);
-                    transition: all .5s;
-                }
-                background: rgb(248, 248, 248);
-                border: none;
-            }
-            .btn-back:hover {
-                i {
-                    color: rgb(22, 22, 22) !important;
-                }
-                background: rgb(232, 232, 232) !important;
-            }
             .btn-download {
                 background: rgb(232, 232, 232);
             }
@@ -83,59 +68,57 @@
             }
         </style>
     </head>
-    <body class="position-relative bg-light">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-theme">
-            <div class="container">
+    <body class="user-select-none">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-theme">
+            <div class="container-lg">
                 <a class="navbar-brand d-flex" href="/">
-                    <img src="/static/img/favicon.ico" width="30" height="30" class="d-inline-block my-auto">
-                    <span class="my-auto ms-2 h3 font-monospace">ToolMinal</span>
+                    <img src="/static/img/favicon.ico" class="d-inline-block my-auto img-fluid sizer ms-2" mobile-width="5rem" style="width: 40px;">
+                    <span class="my-auto ms-2 font-monospace sizer" mobile-fs="5rem" style="font-size: 2rem;">ToolMinal</span>
                 </a>
-                <a href="https://github.com/SJ-Chuang/ToolMinal" target="_blank" class="btn navbar-brand d-none d-md-block" style="font-size: 1.5rem;" data-bs-toggle="tooltip" title="Go to ToolMinal Github">
+                <a href="https://github.com/SJ-Chuang/ToolMinal" target="_blank" class="btn navbar-brand d-none d-lg-block" style="font-size: 1.5rem;" data-bs-toggle="tooltip" title="Go to ToolMinal Github">
                     <i class="fa-brands fa-github"></i>
+                    <span class="text-secondary ms-2 fs-5 lead">{{ version }}</span>
                 </a>
             </div>
         </nav>
-        <div class="position-absolute" style="margin-left: 32px;">
-            <button class="btn-back rounded-circle" style="height: 40px; width: 40px;" onclick="window.location.href = '/'">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
-        </div>
-        <div class="d-flex justify-content-center" style="margin-top: 96px;">
-            <div class="my-auto w-50 user-select-none">
-                <span class="fw-bold me-1" style="font-size: 3em;">Enter the</span>
-                <span class="fw-bold" style="font-size: 3em;">You</span>
-                <span class="fw-bold bg-danger text-light px-2 py-1" style="font-size: 3em; border-radius: 7% 7% 7% 7% / 20% 20% 20% 20%;">Tube</span>
-                <span class="fw-bold ms-1" style="font-size: 3em;">URL</span>
-                <div class="input-group mt-3">
-                    <input type="text" id="inputURL" class="form-control bg-lightgray fs-3">
-                    <button class="btn btn-secondary fs-3 px-4" id="searchBtn" type="button" onclick="search();">
-                        <i class="icon-search fa-solid fa-magnifying-glass"></i>
-                        <div class="icon-loading spinner-grow d-none" role="status"></div>
-                    </button>
-                </div>
-                <span class="text-danger d-block" id="warningInfo" style="font-size: 1em;"></span>
-                <div class="row mt-3" id="urlInfo">
-                    <div class="col-4 d-flex">
-                        <img class="img-fluid w-100 my-auto rounded d-none" id="thumbnail" src="https://i.ytimg.com/vi/5dkoQyFExE4">
+        <div class="container-lg">
+            <div class="row d-flex justify-content-center" style="margin-top: 10rem;">
+                <div class="my-auto w-75 user-select-none">
+                    <span class="fw-bold me-1" style="font-size: 3em;">Enter the</span>
+                    <span class="fw-bold" style="font-size: 3em;">You</span>
+                    <span class="fw-bold bg-danger text-light px-2 py-1" style="font-size: 3em; border-radius: 7% 7% 7% 7% / 20% 20% 20% 20%;">Tube</span>
+                    <span class="fw-bold ms-1" style="font-size: 3em;">URL</span>
+                    <div class="input-group mt-3">
+                        <input type="text" id="inputURL" class="form-control bg-lightgray fs-3">
+                        <button class="btn btn-secondary fs-3 px-4" id="searchBtn" type="button" onclick="search();">
+                            <i class="icon-search fa-solid fa-magnifying-glass"></i>
+                            <div class="icon-loading spinner-grow d-none" role="status"></div>
+                        </button>
                     </div>
-                    <div class="col-8">
-                        <span class="fw-bold d-block overflow-auto d-none" id="urlTitle" style="height: 25%; overflow: auto;">Title</span>
-                        <span class="text-secondary d-block d-none" id="urlDuration" style="height: 25%;">Duration : 00:00:00</span>
-                        <div class="d-grid gap-2">
-                            <a class="btn-download btn d-flex justify-content-between px-5 d-none" id="videoBtn" type="button" href="" target="_blank">
-                                <span class="text-dark theme fw-bold fs-5">Video</span>
-                                <span class="text-resolution text-dark my-auto">1080p</span>
-                                <span class="text-filesize text-dark my-auto">18mb</span>
-                                <span class="text-format text-dark my-auto">MP4</span>
-                                <span class="text-dark my-auto fs-5"><i class="fa-solid fa-download"></i></span>
-                            </a>
-                            <a class="btn-download btn d-flex justify-content-between px-5 d-none" id="audioBtn" type="button" href="" target="_blank">
-                                <span class="text-dark theme fw-bold fs-5">Audio</span>
-                                <span class="text-bandwidth text-dark my-auto">128kbps</span>
-                                <span class="text-filesize text-dark my-auto">18mb</span>
-                                <span class="text-format text-dark my-auto">MP3</span>
-                                <span class="text-dark my-auto fs-5"><i class="fa-solid fa-download"></i></span>
-                            </a>
+                    <span class="text-danger d-block" id="warningInfo" style="font-size: 1em;"></span>
+                    <div class="row mt-3" id="urlInfo">
+                        <div class="col-4 d-flex">
+                            <img class="img-fluid w-100 my-auto rounded d-none" id="thumbnail" src="https://i.ytimg.com/vi/5dkoQyFExE4">
+                        </div>
+                        <div class="col-8">
+                            <span class="fw-bold d-block overflow-auto d-none" id="urlTitle" style="height: 25%; overflow: auto;">Title</span>
+                            <span class="text-secondary d-block d-none" id="urlDuration" style="height: 25%;">Duration : 00:00:00</span>
+                            <div class="d-grid gap-2">
+                                <a class="btn-download btn d-flex justify-content-between px-5 d-none" id="videoBtn" type="button" href="" target="_blank">
+                                    <span class="text-dark theme fw-bold fs-5">Video</span>
+                                    <span class="text-resolution text-dark my-auto">1080p</span>
+                                    <span class="text-filesize text-dark my-auto">18mb</span>
+                                    <span class="text-format text-dark my-auto">MP4</span>
+                                    <span class="text-dark my-auto fs-5"><i class="fa-solid fa-download"></i></span>
+                                </a>
+                                <a class="btn-download btn d-flex justify-content-between px-5 d-none" id="audioBtn" type="button" href="" target="_blank">
+                                    <span class="text-dark theme fw-bold fs-5">Audio</span>
+                                    <span class="text-bandwidth text-dark my-auto">128kbps</span>
+                                    <span class="text-filesize text-dark my-auto">18mb</span>
+                                    <span class="text-format text-dark my-auto">MP3</span>
+                                    <span class="text-dark my-auto fs-5"><i class="fa-solid fa-download"></i></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
