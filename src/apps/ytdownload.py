@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from pytubefix import YouTubeDownloader
 from datetime import timedelta
+import logging
 
 blueprint = Blueprint("app_ytdownload", __name__,)
 
@@ -23,6 +24,7 @@ def app_ytdownload_api(action=None, target=None):
                     "streams": downloader.streams
                 }
             except:
+                logging.exception(f"Cannot resolve the video from {request.args['url']}")
                 returned_dict["results"] = {
                     "title": "",
                     "length": "00:00:00",

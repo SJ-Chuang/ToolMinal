@@ -19,6 +19,9 @@ class YouTubeDownloader:
     def streams(self):
         available_streams = {"Video": [], "Audio": []}
         try:
+            # videos = self.yt.streams.filter(type="video")
+            # print(videos.order_by("resolution").desc().first().url)
+
             videos = self.yt.streams.filter(type="video", progressive=True)
             if len(videos):
                 stream = videos.order_by("resolution").desc().first()

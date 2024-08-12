@@ -44,7 +44,6 @@ from pytubefix.monostate import Monostate
 
 logger = logging.getLogger(__name__)
 
-
 class YouTube:
     """Core developer interface for pytubefix."""
 
