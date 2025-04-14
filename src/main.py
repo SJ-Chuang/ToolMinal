@@ -1,3 +1,4 @@
+import importlib.util
 from flask import Flask, render_template, request, redirect
 from urllib.parse import urlparse
 from datetime import datetime
@@ -6,6 +7,9 @@ import logging
 import apps
 import sys
 import os
+import importlib
+import inspect
+from apps.base import AppBase
 
 LOG_DIR = f"{settings.BASE_DIR}/../../logs"
 
@@ -30,17 +34,27 @@ app = Flask(__name__,
     static_folder=settings.STATIC_FOLDER
 )
 
-url_patterns = {
-    "/app/ytdownload": apps.ytdownload,
-}
+url_patterns = {}
+for root, dirs, files in os.walk(os.path.join(settings.BASE_DIR, "apps")):
+    for file in files:
+        if file.endswith(".py") and not file.startswith("_"):
+            module_name = os.path.splitext(file)[0]
+            spec = importlib.util.spec_from_file_location(module_name, f"{root}/{file}")
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
 
-for prefix, module in url_patterns.items():
-    app.register_blueprint(module.blueprint, url_prefix=prefix)
+            for name, tmp in inspect.getmembers(module, inspect.isclass):
+                if issubclass(tmp, AppBase) and tmp is not AppBase:
+                    logging.info(f"Loading `{name}` from {file}")
+                    obj = tmp()
+                    url_patterns[obj.url_prefix] = {"title": obj.title, "description": obj.description}
+                    app.register_blueprint(obj.blueprint)
 
 @app.route("/", methods=["GET"])
 def index():
     return render_template("index.html", **dict(
         hostname=urlparse(request.base_url).hostname,
+        url_patterns=url_patterns,
         version=settings.VERSION
     ))
 
