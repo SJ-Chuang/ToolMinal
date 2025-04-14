@@ -1,6 +1,6 @@
 # ToolMinal
 
-ToolMinal is a tool project developed based on Flask, and it will continue to be updated and deployed to [here](http://64.110.111.37) for demonstration.
+ToolMinal is a tool project developed based on Flask, and it will continue to be updated and deployed to [here](http://34.83.104.83/) for demonstration.
 
 ## Installation
 
